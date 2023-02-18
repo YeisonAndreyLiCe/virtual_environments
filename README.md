@@ -146,11 +146,12 @@ Docker is a containerization platform that allows you to create and run containe
 Docker containers are isolated environments that run on a single host.  
 To install docker on ubuntu, follow [this](https://docs.docker.com/engine/install/ubuntu/) tutorial. 
 
-```bash
+<!-- ```bash
 docker run -it --rm -v $(pwd):/app -w /app python:3.7 bash
-```
+``` -->
 #### Dockering a python script
 ```Dockerfile
+# Dockerfile
 FROM python:3.7
 WORKDIR ["/app"]
 COPY ["requirements.txt", "/app"]
@@ -161,6 +162,7 @@ CMD ["python", "app.py"]
 Alternatively, you can use docker-compose to build and run the docker container.
 
 ```docker-compose.yml
+# docker-compose.yml
 services:
     app-csv:
         build:
@@ -184,6 +186,7 @@ docker-compose down
 
 #### Dockering a flask app
 ```Dockerfile
+# Dockerfile
 FROM python:3.7
 WORKDIR ["/app"]
 COPY ["requirements.txt", "/app"]
@@ -192,6 +195,7 @@ COPY ["/app", "/app"]
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "80"]
 ```
 ```docker-compose.yml
+# docker-compose.yml
 services:
     app-flask:
         build:
@@ -209,8 +213,7 @@ docker-compose ps
 ```
 
 ### Recommendations
-#### Divide and conquer
-- Use `pyenv` to manage the versions of Python.
+- Use `mamba` to manage the versions of Python. 
 - Use `pipenv` to manage the packages of your project.
-
-
+#### Divide and conquer
+more info [here](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html#integrated-package-management)
